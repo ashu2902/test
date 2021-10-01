@@ -154,59 +154,63 @@ class _CarouselState extends State<Carousel> {
   @override
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
+    final _height = MediaQuery.of(context).size.height;
 
-    return GestureDetector(
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) => Dialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18)),
-                  child: Material(
-                    child: SizedBox(
-                      height: _width,
-                      child: Center(
-                        child: Text(
-                          'Random Dialog Box',
-                          style: TextStyle(fontSize: 20),
+    return Container(
+      height: _height / 3.5,
+      child: GestureDetector(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (context) => Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18)),
+                    child: Material(
+                      child: SizedBox(
+                        height: _width,
+                        child: Center(
+                          child: Text(
+                            'Random Dialog Box',
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ));
-      },
-      child: CarouselSlider(
-          items: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    color: Colors.blue),
-                width: _width,
-                child: Center(
-                  child: Container(
+                  ));
+        },
+        child: CarouselSlider(
+            items: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: Colors.blue),
+                  width: _width,
+                  height: _height,
+                  child: Center(
                     child: Text('Demo Carousel 1'),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    color: Colors.blue),
-                width: _width,
-                child: Center(
-                    child: Container(
-                  child: Text('Demo Carousel 2'),
-                )),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Container(
+                  height: _height,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40),
+                      color: Colors.blue),
+                  width: _width,
+                  child: Center(child: Text('Demo Carousel 2')),
+                ),
               ),
-            ),
-          ],
-          options: CarouselOptions(
-              autoPlay: true, enableInfiniteScroll: true, aspectRatio: 16 / 9)),
+            ],
+            options: CarouselOptions(
+                autoPlay: true,
+                enableInfiniteScroll: true,
+                aspectRatio: 16 / 9,
+                viewportFraction: 0.7)),
+      ),
     );
   }
 }
